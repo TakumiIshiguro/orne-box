@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     packages_name = "orne_box_description"
-    xacro_file_name = "orne_box_3d_lidar.urdf.xacro"
+    xacro_file_name = "orne_box.urdf.xacro"
     # Get URDF via xacro
     robot_description_content = Command(
         [

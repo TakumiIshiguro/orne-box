@@ -33,7 +33,7 @@ def generate_launch_description():
     config_file_path = os.path.join(
         get_package_share_directory('orne_box_bringup'),
         'config/urg/',
-        'params_ether.yaml'
+        'params_serial.yaml'
     )
 
     # パラメータファイルのロード

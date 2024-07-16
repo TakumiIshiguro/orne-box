@@ -79,7 +79,7 @@
       <material>Gazebo/Orange</material>
     </gazebo>
     <!-- imu -->
-    <gazebo reference="imu_link">
+    <!-- <gazebo reference="imu_link">
       <sensor type="imu" name="imu">
         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
           <ros>
@@ -148,7 +148,7 @@
       </sensor>
       <material>Gazebo/Green</material>
     
-    </gazebo>
+    </gazebo> -->
     <!-- hokuyo -->
     <gazebo reference="hokuyo_link">
       <sensor type="ray" name="head_hokuyo_sensor">

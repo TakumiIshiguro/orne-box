@@ -11,7 +11,7 @@ def generate_launch_description():
 
     #for ypspur param file ex.RADIUS,TREAD
     # ypspur_param = os.path.join(icart_mini_driver_dir,'config/ypspur','icart_mini.param')
-    ypspur_param = os.path.join(icart_mini_driver_dir,'config/ypspur','box_v3.param')
+    ypspur_param = os.path.join(icart_mini_driver_dir,'config/ypspur','box_v1.param')
     
     launch_file_dir = os.path.join(get_package_share_directory('orne_box_bringup'), 'launch') 
     launch_include_file_dir = os.path.join(get_package_share_directory('orne_box_bringup'), 'launch/include') 
@@ -73,18 +73,18 @@ def generate_launch_description():
         ),
 
         # sensors
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [launch_include_file_dir, '/urg_node2.launch.py'])
-        ),
-        launch.actions.LogInfo(
-            msg="Launch URG  node."
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [launch_include_file_dir, '/adis16465.launch.py'])
-        ),
-        launch.actions.LogInfo(
-            msg="Launch IMU node."
-        )
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         [launch_include_file_dir, '/urg_node2.launch.py'])
+        # ),
+        # launch.actions.LogInfo(
+        #     msg="Launch URG  node."
+        # )
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         [launch_include_file_dir, '/adis16465.launch.py'])
+        # ),
+        # launch.actions.LogInfo(
+        #     msg="Launch IMU node."
+        # )
     ])

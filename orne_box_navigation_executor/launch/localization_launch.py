@@ -53,7 +53,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'map',
-            default_value=os.path.join(config_dir, 'maps', 'cit_3f_map.yaml'),
+            default_value=os.path.join(config_dir, 'maps', 'tsudanuma.yaml'),
             description='Full path to map yaml file to load'),
 
         DeclareLaunchArgument(
