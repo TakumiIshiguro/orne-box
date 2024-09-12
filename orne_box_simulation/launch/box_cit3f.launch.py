@@ -51,7 +51,7 @@ def generate_launch_description():
         ),
 
         ExecuteProcess(
-            cmd=['ros2', 'param', 'set', '/gazebo', 'use_sim_time', use_sim_time],
+            cmd=['ros2', 'param', 'set', '/gazebo', 'use_sim_time'],
             output='screen'),
 
         IncludeLaunchDescription(
