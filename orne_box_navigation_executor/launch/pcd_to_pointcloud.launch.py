@@ -11,7 +11,7 @@ def generate_launch_description():
             name='pcd_to_pointcloud',
             output='screen',
             parameters=[{
-                'file_name': '/home/kyo/orne_ws/src/orne-box/orne_box_navigation_executor/config/maps/3F_map.pcd',
+                'file_name': '/home/ros2_ws/src/orne-box/orne_box_navigation_executor/config/maps/3F_map.pcd',
                 'tf_frame': 'map'
             }],
             remappings=[
