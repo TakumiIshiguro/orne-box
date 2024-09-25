@@ -23,7 +23,7 @@ def generate_launch_description():
     emcl2_launch_dir = os.path.join(emcl2_dir, 'launch')
     emcl2_params_file = LaunchConfiguration('emcl2_params_file')
 
-    pcl_dir = get_package_share_directory('lidar_localization_ros2')
+    pcl_dir = get_package_share_directory('pcl_localization_ros2')
     pcl_launch_dir = os.path.join(pcl_dir, 'launch')
     pcl_params_file = LaunchConfiguration('pcl_params_file')
 
@@ -145,7 +145,7 @@ def generate_launch_description():
         # use pcl_localization
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(pcl_launch_dir,
-                                                       'lidar_localization.launch.py')),
+                                                       'pcl_localization.launch.py')),
             condition=IfCondition(PythonExpression(['not ', slam])),
             # launch_arguments={'map': map_yaml_file,
             #                   'use_sim_time': use_sim_time,
