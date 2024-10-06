@@ -13,7 +13,7 @@ amcl:
     alpha3: 0.9
     alpha4: 0.4
     alpha5: 0.2
-    base_frame_id: "base_footprint"
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -62,11 +62,37 @@ amcl_rclcpp_node:
   ros__parameters:
     use_sim_time: True
 
+emcl2:
+  ros__parameters:
+    odom_freq: 40
+    global_frame_id: "map"
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    footprint_frame_id: "base_link"
+    laser_min_range: 0.0
+    laser_max_range: 100000000.0
+    scan_increment: 1
+    initial_pose_x: 0.0
+    initial_pose_y: 0.0
+    initial_pose_a: 0.0
+    num_particles: 500
+    alpha_threshold: 0.003
+    expansion_radius_position: 0.1
+    expansion_radius_orientation: 0.2
+    extraction_rate: 0.1
+    range_threshold: 3.14
+    sensor_reset: false
+    odom_fw_dev_per_fw: 0.4
+    odom_fw_dev_per_rot: 0.4
+    odom_rot_dev_per_fw: 0.2
+    odom_rot_dev_per_rot: 0.2
+    laser_likelihood_max_dist: 2.0
+
 bt_navigator:
   ros__parameters:
     use_sim_time: True
     global_frame: map
-    robot_base_frame: base_footprint
+    robot_base_frame: base_link
     odom_topic: /odom
     default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
     #add
@@ -222,7 +248,7 @@ global_costmap:
       update_frequency: 2.55055
       publish_frequency: 2.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: True
       footprint: "[ [-0.2, -0.2775], [-0.2, 0.2775], [0.6, 0.2775], [0.6, -0.2775] ]"
       resolution: 0.1
@@ -272,7 +298,7 @@ local_costmap:
       update_frequency: 4.0505
       publish_frequency: 4.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: True
       rolling_window: true
       width: 10
