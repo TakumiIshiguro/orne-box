@@ -25,21 +25,35 @@ def generate_launch_description():
 
     adis16465 = Node(
         name='adis16465_node',
-        package='adi_driver2',
-        executable='adis16465',
+        package='adi_driver',
+        executable='adis16465_node',
         parameters=[params_file],
         output='screen')
+    
+    # IMUのデータフィルタを起動する
+    imu_filter_node = Node(
+        package="imu_filter_madgwick",                                  # パッケージの名前
+        executable="imu_filter_madgwick_node",                          # 実行ファイルの名前
+        name="imu_filter_madgwick",                                     # ノードの名前
+        parameters=[{                                                   # ノードのパラメータ
+            "use_mag":False,
+            "publish_tf":False
+        }],
+    )
 
     imu = GroupAction(
         actions=[
         push_ns,
-        adis16465,
+        adis16465
         ]
     )
+    
 
     ld = LaunchDescription()
     ld.add_action(declare_namespace)
     
     ld.add_action(imu)
+
+    ld.add_action(imu_filter_node)
 
     return ld

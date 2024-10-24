@@ -93,7 +93,7 @@ def generate_launch_description():
                         'angular_vel_lim':3.14,
                         'angular_accel_lim':3.14,
                         'calculate_odom_from_ypspur':True,
-                        'publish_odom_tf':True
+                        'publish_odom_tf':False
             }]
         ),
         #robot_state_publisher and joint_state_publisher
@@ -135,20 +135,20 @@ def generate_launch_description():
         # launch.actions.LogInfo(
         #     msg="Launch URG  node."
         # ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [launch_include_file_dir, '/adis16465.launch.py'])
-        ),
-        launch.actions.LogInfo(
-            msg="Launch IMU node."
-        ),
-        IncludeLaunchDescription(    
-            PythonLaunchDescriptionSource(
-                [launch_include_file_dir, '/imu_filter.launch.py'])
-        ),
-        launch.actions.LogInfo(
-            msg="Launch IMU Filter node."
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         [launch_include_file_dir, '/adis16465.launch.py'])
+        # ),
+        # launch.actions.LogInfo(
+        #     msg="Launch IMU node."
+        # ),
+        # IncludeLaunchDescription(    
+        #     PythonLaunchDescriptionSource(
+        #         [launch_include_file_dir, '/imu_filter.launch.py'])
+        # ),
+        # launch.actions.LogInfo(
+        #     msg="Launch IMU Filter node."
+        # ),
 
         # add rfans16
         # IncludeLaunchDescription(
