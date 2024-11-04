@@ -157,6 +157,7 @@ controller_server:
     # goal_checker_plugin: "goal_checker"
     goal_checker_plugin: ["general_goal_checker"]
     controller_plugins: ["FollowPath"]
+    speed_limit_topic: "/speed_limit"
 
     # Progress checker parameters
     progress_checker:
@@ -228,8 +229,8 @@ global_costmap:
       resolution: 0.1
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
-      #filters
-      filters: ["keepout_filter", "inflation_layer"]
+      filters: ["speed_filter"]
+      # filters: ["keepout_filter", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -253,6 +254,11 @@ global_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
         inflation_radius: 1.8
+      speed_filter:
+        plugin: "nav2_costmap_2d::SpeedFilter"
+        enabled: True
+        filter_info_topic: "/costmap_filter_info"
+        speed_limit_topic: "/speed_limit"
       #costmap filter 
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
