@@ -8,12 +8,12 @@ amcl:
     # alpha4: 0.2
     # alpha5: 0.2
     #real
-    alpha1: 0.6
-    alpha2: 0.1
-    alpha3: 0.2
-    alpha4: 0.3
-    alpha5: 0.2
-    base_frame_id: "base_footprint"
+    alpha1: 0.05
+    alpha2: 0.05
+    alpha3: 0.05
+    alpha4: 0.05
+    alpha5: 0.05
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -62,11 +62,38 @@ amcl_rclcpp_node:
   ros__parameters:
     use_sim_time: True
 
+emcl2:
+  ros__parameters:
+    odom_freq: 40
+    transform_tolerance: 0.2
+    global_frame_id: "map"
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    footprint_frame_id: "base_link"
+    laser_min_range: 0.0
+    laser_max_range: 100000000.0
+    scan_increment: 1
+    initial_pose_x: 0.0
+    initial_pose_y: 0.0
+    initial_pose_a: 0.0
+    num_particles: 500
+    alpha_threshold: 0.5
+    expansion_radius_position: 0.1
+    expansion_radius_orientation: 0.2
+    extraction_rate: 0.1
+    range_threshold: 0.3
+    sensor_reset: false
+    odom_fw_dev_per_fw: 0.19
+    odom_fw_dev_per_rot: 0.0001
+    odom_rot_dev_per_fw: 0.13
+    odom_rot_dev_per_rot: 0.2
+    laser_likelihood_max_dist: 0.2
+
 bt_navigator:
   ros__parameters:
     use_sim_time: True
     global_frame: map
-    robot_base_frame: base_footprint
+    robot_base_frame: base_link
     odom_topic: /odom
     default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
     #add
@@ -178,13 +205,13 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.9
       max_vel_y: 0.0
-      max_vel_theta: 1.7
+      max_vel_theta: 0.7
       min_speed_xy: 0.0
       max_speed_xy: 0.9
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
-      acc_lim_x: 2.5
+      acc_lim_x: 1.0
       acc_lim_y: 0.0
       acc_lim_theta: 3.2
       decel_lim_x: -2.5
@@ -223,7 +250,7 @@ global_costmap:
       update_frequency: 2.55055
       publish_frequency: 2.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: True
       footprint: "[ [-0.3, -0.3775], [-0.3, 0.3775], [0.6, 0.2775], [0.6, -0.2775] ]"
       resolution: 0.1
@@ -278,7 +305,7 @@ local_costmap:
       update_frequency: 4.0505
       publish_frequency: 4.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: True
       rolling_window: true
       width: 10
@@ -401,9 +428,9 @@ velocity_smoother:
     scale_velocities: False
     feedback: "OPEN_LOOP"
     max_velocity: [0.9, 0.0, 1.7]
-    min_velocity: [-0.9, 0.0, -1.7]
-    max_accel: [2.5, 0.0, 3.2]
-    max_decel: [-2.5, 0.0, -3.2]
+    min_velocity: [-0.9, 0.0, -0.7]
+    max_accel: [1.0, 0.0, 1.0]
+    max_decel: [-2.0, 0.0, -2.0]
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]

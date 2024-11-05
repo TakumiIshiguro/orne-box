@@ -81,11 +81,17 @@ def generate_launch_description():
     return LaunchDescription([
 
         # add waypoint_manager2
+        #Node(
+        #    package='waypoint_manager2',
+        #    executable='waypoint_manager2_node'
+        #    #name='waypoint_manager2'
+        #),
+
         Node(
-            package='waypoint_manager2',
-            executable='waypoint_manager2_node'
-            #name='waypoint_manager2'
-        ),
+                package='waypoint_manager2',
+                executable='traffic_waypoint_manager2_node'
+                #name='waypoint_manager2'
+            ),
 
         # add costmap
         #IncludeLaunchDescription(

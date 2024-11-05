@@ -84,7 +84,7 @@ def generate_launch_description():
             package='orne_box_bringup',
             executable='icart_mini_driver',
             parameters=[{'odom_frame_id':'odom',
-                        'base_frame_id':'base_footprint',
+                        'base_frame_id':'base_link',
                         'Hz':40,
                         'left_wheel_joint':'left_wheel_joint',
                         'right_wheel_joint':'right_wheel_joint',
@@ -93,7 +93,7 @@ def generate_launch_description():
                         'angular_vel_lim':3.14,
                         'angular_accel_lim':3.14,
                         'calculate_odom_from_ypspur':True,
-                        'publish_odom_tf':True
+                        'publish_odom_tf':False
             }]
         ),
         #robot_state_publisher and joint_state_publisher
@@ -106,9 +106,9 @@ def generate_launch_description():
         ),
 
         ### start description
-        #description_nodes,
-        robot_state_pub_node,
-        joint_state_pub_node,
+        # #description_nodes,
+        # robot_state_pub_node,
+        # joint_state_pub_node,
 
         #mixed wheel_odom and other (IMU etc..)
         IncludeLaunchDescription(
@@ -142,13 +142,13 @@ def generate_launch_description():
         launch.actions.LogInfo(
             msg="Launch IMU node."
         ),
-        IncludeLaunchDescription(    
-            PythonLaunchDescriptionSource(
-                [launch_include_file_dir, '/imu_filter.launch.py'])
-        ),
-        launch.actions.LogInfo(
-            msg="Launch IMU Filter node."
-        ),
+        # IncludeLaunchDescription(    
+        #     PythonLaunchDescriptionSource(
+        #         [launch_include_file_dir, '/imu_filter.launch.py'])
+        # ),
+        # launch.actions.LogInfo(
+        #     msg="Launch IMU Filter node."
+        # ),
 
         # add rfans16
         # IncludeLaunchDescription(
