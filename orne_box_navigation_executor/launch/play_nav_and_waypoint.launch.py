@@ -26,8 +26,8 @@ def generate_launch_description():
         default=os.path.join(
             config_dir,
             'maps',
-            'tsudanuma.yaml'))
-            # 'cit_3f_map.yaml'))
+            # 'tsudanuma.yaml'))
+            'cit_3f_map.yaml'))
  
             
     ### add navigation2 ###
@@ -55,8 +55,16 @@ def generate_launch_description():
         default=os.path.join(
             config_dir,
             'maps',
-            'tsudanuma_for_costmap.yaml'))
-            # 'cit_3f_map_keepout.yaml'))
+            # 'tsudanuma_for_costmap.yaml'))
+            'cit_3f_map_keepout.yaml'))
+    
+    speed_yaml_file = LaunchConfiguration(
+        'mask',
+        default=os.path.join(
+            config_dir,
+            'maps',
+            # 'tsudanuma_for_costmap.yaml'))
+            'cit_3f_map_speed_mask.yaml'))
             
 
     # Create our own temporary YAML files that include substitutions
@@ -108,7 +116,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'params_file',
-            default_value=os.path.join(config_dir, 'params', 'keepout_params.yaml'),
+            default_value=os.path.join(config_dir, 'params', 'speed_params.yaml'),
             description='Full path to the ROS 2 parameters file to use'),
 
         DeclareLaunchArgument(
@@ -139,7 +147,7 @@ def generate_launch_description():
                         source_file=params_file,
                         root_key=namespace,
                         param_rewrites={'use_sim_time': use_sim_time,
-                                        'yaml_filename': mask_yaml_file},
+                                        'yaml_filename': speed_yaml_file},
                         convert_types=True)]),
 
         Node(
